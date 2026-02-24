@@ -29,6 +29,6 @@ Thumbs.db
 /database/*.sqlite-wal
 /database/*.sqlite-shm
 
-# Legacy vendor assets (large, TCC-blocked on macOS)
+# Legacy assets too large for git (deployed via gcloud directly)
 /public/assets/backend/
 /public/assets/frontend/

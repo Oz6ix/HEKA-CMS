@@ -1,3 +1,7 @@
+# This file controls what gets uploaded to Google Cloud Build
+# It is SEPARATE from .gitignore — assets don't need to be in git
+# but DO need to be uploaded to Cloud Build
+
 .git
 .gitignore
 .env
@@ -18,3 +22,5 @@ docker-compose.yml
 .zed
 database/*.sqlite
 database/*.sqlite-journal
+
+# NOTE: public/assets/ is NOT excluded here — it gets uploaded to Cloud Build
