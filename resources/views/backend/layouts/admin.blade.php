@@ -8,102 +8,33 @@
     <link rel="shortcut icon" href="{{ URL::asset('uploads/logos/favicon.png') }}"/>
     <link rel="icon" href="{{ URL::asset('uploads/logos/favicon.png') }}" type="image/x-icon"/>
     <!--begin::Fonts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-    <script>
-        WebFont.load({
-            google: {
-                "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
-            },
-            active: function () {
-                sessionStorage.fonts = true;
-            }
-        });
-    </script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700" rel="stylesheet">
     <!--end::Fonts -->
-    <!--begin:: Global Mandatory Vendors -->
-    <link href="{{ URL::asset('assets/backend/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <!--end:: Global Mandatory Vendors -->
-    <!--begin:: Global Optional Vendors -->
-    <link href="{{ URL::asset('assets/backend/vendors/general/tether/dist/css/tether.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css') }}"
-          rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css') }}"
-          rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css') }}"
-          rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/bootstrap-daterangepicker/daterangepicker.css') }}"
-          rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css') }}"
-          rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/bootstrap-select/dist/css/bootstrap-select.css') }}"
-          rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css') }}"
-          rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/select2/dist/css/select2.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/ion-rangeslider/css/ion.rangeSlider.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/nouislider/distribute/nouislider.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/owl.carousel/dist/assets/owl.carousel.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/owl.carousel/dist/assets/owl.theme.default.css') }}"
-          rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/dropzone/dist/dropzone.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/summernote/dist/summernote.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css') }}"
-          rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/animate.css/animate.css') }}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/morris.js/morris.css') }}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/sweetalert2/dist/sweetalert2.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/socicon/css/socicon.css') }}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/custom/vendors/line-awesome/css/line-awesome.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/custom/vendors/flaticon/flaticon.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/custom/vendors/flaticon2/flaticon.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/general/@fortawesome/fontawesome-free/css/all.min.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/vendors/custom/pace-loading-progress-bar/pace.css') }}"
-          rel="stylesheet" type="text/css"/>
-    <!--end:: Global Optional Vendors -->
-    <!--begin::Global Theme Styles(used by all pages) -->
-    <link href="{{ URL::asset('assets/backend/css/demo1/style.bundle.css') }}" rel="stylesheet"
-          type="text/css"/>
-    <!--end::Global Theme Styles -->
-    <!--begin::Layout Skins(used by all pages) -->
-    <link href="{{ URL::asset('assets/backend/css/demo1/skins/header/base/light.css') }}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/css/demo1/skins/header/menu/light.css') }}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/css/demo1/skins/brand/light.css') }}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ URL::asset('assets/backend/css/demo1/skins/aside/light.css') }}" rel="stylesheet"
-          type="text/css"/>
-    <!--end::Layout Skins -->
-    <!--begin::Custom styles(used by all pages) -->
+    <!--begin:: Vendor CSS from CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.5/css/perfect-scrollbar.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/nouislider/15.7.1/nouislider.min.css" rel="stylesheet"/>
+    <!--end:: Vendor CSS -->
+    <!--begin::KT Theme Styles (local) -->
+    <link href="{{ URL::asset('assets/backend/css/demo1/style.bundle.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/backend/css/demo1/skins/header/base/light.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/backend/css/demo1/skins/header/menu/light.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/backend/css/demo1/skins/brand/light.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/backend/css/demo1/skins/aside/light.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/backend/css/custom.css') }}" rel="stylesheet" type="text/css"/>
-    <!--end::Custom styles -->
+    <!--end::KT Theme Styles -->
     @yield('styles')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -153,7 +84,7 @@
     <i class="fa fa-arrow-up"></i>
 </div>
 <!-- end::Scrolltop -->
-<!-- begin::Global Config(global config for global JS sciprts) -->
+<!-- begin::Global Config -->
 <script>
     var KTAppOptions = {
         "colors": {
@@ -175,139 +106,52 @@
     };
 </script>
 <!-- end::Global Config -->
-<!--begin:: Global Mandatory Vendors -->
-<script src="{{ URL::asset('assets/backend/vendors/general/jquery/dist/jquery.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/popper.js/dist/umd/popper.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/bootstrap/dist/js/bootstrap.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/js-cookie/src/js.cookie.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/moment/min/moment.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/tooltip.js/dist/umd/tooltip.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/perfect-scrollbar/dist/perfect-scrollbar.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/sticky-js/dist/sticky.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/wnumb/wNumb.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/bootbox/bootbox.min.js') }}"></script>
-<!--end:: Global Mandatory Vendors -->
-<!--begin:: Global Optional Vendors -->
-<script src="{{ URL::asset('assets/backend/vendors/general/jquery-form/dist/jquery.form.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/block-ui/jquery.blockUI.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/custom/js/vendors/bootstrap-datepicker.init.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/custom/js/vendors/bootstrap-timepicker.init.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/bootstrap-daterangepicker/daterangepicker.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/bootstrap-maxlength/src/bootstrap-maxlength.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/custom/vendors/bootstrap-multiselectsplitter/bootstrap-multiselectsplitter.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/bootstrap-select/dist/js/bootstrap-select.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/bootstrap-switch/dist/js/bootstrap-switch.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/custom/js/vendors/bootstrap-switch.init.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/select2/dist/js/select2.full.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/ion-rangeslider/js/ion.rangeSlider.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/typeahead.js/dist/typeahead.bundle.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/handlebars/dist/handlebars.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/inputmask/dist/jquery.inputmask.bundle.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/inputmask/dist/inputmask/inputmask.date.extensions.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/inputmask/dist/inputmask/inputmask.numeric.extensions.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/nouislider/distribute/nouislider.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/owl.carousel/dist/owl.carousel.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/autosize/dist/autosize.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/clipboard/dist/clipboard.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/dropzone/dist/dropzone.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/summernote/dist/summernote.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/markdown/lib/markdown.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/bootstrap-markdown/js/bootstrap-markdown.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/custom/js/vendors/bootstrap-markdown.init.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/bootstrap-notify/bootstrap-notify.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/custom/js/vendors/bootstrap-notify.init.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/jquery-validation/dist/jquery.validate.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/jquery-validation/dist/additional-methods.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/custom/js/vendors/jquery-validation.init.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/toastr/build/toastr.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/raphael/raphael.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/morris.js/morris.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/chart.js/dist/Chart.bundle.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/custom/vendors/bootstrap-session-timeout/dist/bootstrap-session-timeout.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/custom/vendors/jquery-idletimer/idle-timer.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/waypoints/lib/jquery.waypoints.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/counterup/jquery.counterup.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/es6-promise-polyfill/promise.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/sweetalert2/dist/sweetalert2.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/custom/js/vendors/sweetalert2.init.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/jquery.repeater/src/lib.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/jquery.repeater/src/jquery.input.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/jquery.repeater/src/repeater.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/general/dompurify/dist/purify.js') }}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('assets/backend/vendors/custom/pace-loading-progress-bar/pace.min.js') }}"
-        type="text/javascript"></script>
-<!--end:: Global Optional Vendors -->
-<!--begin::Global Theme Bundle(used by all pages) -->
+<!--begin:: Vendor JS from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.5/js.cookie.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-js/1.3.0/sticky.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.4/bootbox.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nouislider/15.7.1/nouislider.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autosize/6.0.1/autosize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/bootstrap-notify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/additional-methods.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.2.8/es6-promise.auto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+<!--end:: Vendor JS -->
+<!--begin::KT Theme JS (local) -->
 <script src="{{ URL::asset('assets/backend/js/demo1/scripts.bundle.js') }}" type="text/javascript"></script>
-<!--end::Global Theme Bundle -->
-<!--begin::Custom javascript codes(used by all pages) -->
-<script src="{{ URL::asset('assets/backend/js/demo1/pages/components/extended/blockui.js') }}"
-        type="text/javascript"></script>
+<script src="{{ URL::asset('assets/backend/js/demo1/pages/components/extended/blockui.js') }}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/backend/js/custom.js') }}" type="text/javascript"></script>
-<!--end::Custom javascript codes -->
+<!--end::KT Theme JS -->
 @yield('scripts')
 </body>
 <!-- end::Body -->
+</html>

@@ -1,9 +1,7 @@
-# This file controls what gets uploaded to Google Cloud Build
-# It is SEPARATE from .gitignore — assets don't need to be in git
-# but DO need to be uploaded to Cloud Build
+# This file controls what gcloud uploads to Cloud Build
+# Vendor libraries are now loaded from CDN — only upload custom theme files
 
 .git
-.gitignore
 .env
 .env.backup
 node_modules
@@ -23,4 +21,15 @@ docker-compose.yml
 database/*.sqlite
 database/*.sqlite-journal
 
-# NOTE: public/assets/ is NOT excluded here — it gets uploaded to Cloud Build
+# Exclude the 200MB vendor asset directories (loaded from CDN now)
+public/assets/backend/vendors/
+public/assets/frontend/vendors/
+public/assets/frontend/bootbox/
+public/assets/frontend/css/
+public/assets/frontend/js/
+public/assets/frontend/media/
+
+# Keep: public/assets/backend/css/ (KT theme, ~2MB)
+# Keep: public/assets/backend/js/ (KT scripts, ~1MB)
+# Keep: public/assets/backend/bootbox/ (~50KB)
+# Keep: public/assets/brand/ (~100KB)
