@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Repositories\Contracts;
+
+interface StaffRepositoryInterface
+{
+    public function getAll();
+    public function find($id);
+    public function create(array $data);
+    public function update($id, array $data);
+    public function delete($id);
+    public function deleteMultiple(array $ids);
+    public function updateStatus($id, $status);
+    public function findByEmail($email);
+    public function findByCode($code, $id = null);
+}

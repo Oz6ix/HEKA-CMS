@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-slate-50">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Heka Vibe') }}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Scripts & Styles -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="h-full font-sans antialiased text-slate-800">
+    <div x-data="{ sidebarOpen: false }" class="h-screen flex bg-slate-50 overflow-hidden">
+        
+        <!-- Mobile Sidebar Backdrop -->
+        <div x-show="sidebarOpen" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-slate-900/80 z-40 lg:hidden" @click="sidebarOpen = false"></div>
+
+        <!-- Sidebar -->
+        @include('backend.layouts.includes.sidebar_modern')
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+            
+            <!-- Header -->
+            @include('backend.layouts.includes.header_modern')
+
+            <!-- Main Scroll Area -->
+            <main class="flex-1 overflow-y-auto focus:outline-none p-6">
+                <div class="max-w-7xl mx-auto">
+                    @if(session('success'))
+                        <div class="mb-6 rounded-lg bg-green-50 p-4 border border-green-200">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-check-circle text-green-400"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-green-800">{{ session('success') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div class="mb-6 rounded-lg bg-red-50 p-4 border border-red-200">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-exclamation-circle text-red-400"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-red-800">{{ session('error') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    @yield('content')
+                </div>
+            </main>
+        </div>
+    </div>
+    @yield('scripts')
+</body>
+</html>

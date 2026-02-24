@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEKA Clinic Management System — Architecture Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: #1e293b;
+            background: #fff;
+            padding: 40px;
+            line-height: 1.6;
+        }
+        
+        .cover {
+            text-align: center;
+            padding: 60px 0 40px;
+            border-bottom: 3px solid #2563eb;
+            margin-bottom: 40px;
+        }
+        .cover .logo {
+            width: 80px; height: 80px; border-radius: 16px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-bottom: 16px;
+        }
+        .cover .logo span { color: white; font-size: 32px; font-weight: 700; }
+        .cover h1 { font-size: 28px; font-weight: 700; color: #0f172a; margin-bottom: 4px; }
+        .cover .subtitle { font-size: 16px; color: #64748b; margin-bottom: 20px; }
+        .cover .meta { font-size: 12px; color: #94a3b8; }
+        
+        h2 {
+            font-size: 20px; font-weight: 700; color: #0f172a;
+            margin: 40px 0 16px; padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        h2 .emoji { margin-right: 8px; }
+        
+        .diagram-container {
+            background: #f8fafc; border: 1px solid #e2e8f0;
+            border-radius: 12px; padding: 24px; margin: 20px 0;
+            overflow-x: auto;
+        }
+        .diagram-container .mermaid { display: flex; justify-content: center; }
+        
+        table {
+            width: 100%; border-collapse: collapse; font-size: 13px;
+            margin: 16px 0;
+        }
+        th {
+            background: #f1f5f9; text-align: left; padding: 10px 12px;
+            font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+            color: #475569; border-bottom: 2px solid #e2e8f0;
+        }
+        td {
+            padding: 8px 12px; border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+        }
+        tr:hover td { background: #f8fafc; }
+        
+        .badge {
+            display: inline-block; padding: 2px 8px; border-radius: 999px;
+            font-size: 10px; font-weight: 600;
+        }
+        .badge-new { background: #d1fae5; color: #065f46; }
+        .badge-fixed { background: #fef3c7; color: #92400e; }
+        .badge-rewritten { background: #dbeafe; color: #1e40af; }
+        
+        .tech-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+            margin: 16px 0;
+        }
+        .tech-card {
+            border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;
+            text-align: center;
+        }
+        .tech-card .label { font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tech-card .value { font-size: 15px; font-weight: 600; color: #1e293b; margin-top: 4px; }
+        
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+            margin: 16px 0;
+        }
+        .stat-card {
+            border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px;
+            text-align: center; background: linear-gradient(135deg, #f8fafc, #fff);
+        }
+        .stat-card .number { font-size: 28px; font-weight: 700; color: #2563eb; }
+        .stat-card .label { font-size: 11px; color: #64748b; margin-top: 4px; }
+
+        .page-break { page-break-before: always; }
+        
+        @media print {
+            body { padding: 20px; }
+            .cover { padding: 30px 0 20px; }
+            .diagram-container { break-inside: avoid; }
+            h2 { break-after: avoid; }
+            table { break-inside: avoid; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="cover">
+    <div class="logo"><span>+</span></div>
+    <h1>HEKA Clinic Management System</h1>
+    <p class="subtitle">Architecture Diagram & Modernization Report</p>
+    <p class="meta">Generated: February 2026 &nbsp;|&nbsp; Version: Modern UI Upgrade</p>
+</div>
+
+<!-- Stats -->
+<div class="stats-grid">
+    <div class="stat-card"><div class="number">42</div><div class="label">Controllers</div></div>
+    <div class="stat-card"><div class="number">54</div><div class="label">Models</div></div>
+    <div class="stat-card"><div class="number">5</div><div class="label">Services</div></div>
+    <div class="stat-card"><div class="number">5</div><div class="label">Repositories</div></div>
+    <div class="stat-card"><div class="number">7</div><div class="label">Modules</div></div>
+</div>
+
+<!-- Tech Stack -->
+<h2><span class="emoji">🛠</span>Technology Stack</h2>
+<div class="tech-grid">
+    <div class="tech-card"><div class="label">Backend</div><div class="value">Laravel 11.48 / PHP 8.5</div></div>
+    <div class="tech-card"><div class="label">Database</div><div class="value">SQLite</div></div>
+    <div class="tech-card"><div class="label">Frontend</div><div class="value">Blade + Tailwind CSS</div></div>
+    <div class="tech-card"><div class="label">JS Framework</div><div class="value">Alpine.js</div></div>
+    <div class="tech-card"><div class="label">Build Tool</div><div class="value">Vite 7.3.1</div></div>
+    <div class="tech-card"><div class="label">Architecture</div><div class="value">MVC + Service + Repository</div></div>
+</div>
+
+<!-- System Architecture -->
+<h2><span class="emoji">🏗</span>System Architecture</h2>
+<div class="diagram-container">
+    <pre class="mermaid">
+graph TB
+    subgraph CLIENT["🌐 Client Layer"]
+        BROWSER["Browser"]
+    end
+
+    subgraph BUILD["📦 Build"]
+        VITE["Vite v7.3 :5173"]
+        ALPINE["Alpine.js"]
+    end
+
+    subgraph LARAVEL["⚙️ Laravel 11.48"]
+        subgraph MW["Middleware"]
+            AUTH["Auth"]
+            PERM["EnsurePermissions"]
+        end
+
+        subgraph VIEWS["Blade Views"]
+            OLD_L["admin.blade.php ⛔ Legacy"]
+            NEW_L["modern.blade.php ✅ New"]
+        end
+
+        subgraph CTRL["Controllers"]
+            C1["Clinical (5)"]
+            C2["Administration (6)"]
+            C3["Hospital Setup (7)"]
+            C4["Pharmacy & Diagnostics (8)"]
+            C5["Billing & RCM (2)"]
+            C6["Patient Portal (3)"]
+            C7["Settings (4)"]
+        end
+
+        subgraph SVC["Service Layer"]
+            S1["AppointmentService"]
+            S2["PatientService"]
+            S3["PatientDiagnosisService"]
+            S4["StaffService"]
+            S5["InventoryService"]
+        end
+
+        subgraph REPO["Repository Layer"]
+            R1["AppointmentRepo"]
+            R2["PatientRepo"]
+            R3["DiagnosisRepo"]
+            R4["StaffRepo"]
+            R5["InventoryRepo"]
+        end
+
+        MODELS["54 Eloquent Models"]
+    end
+
+    DB["💾 SQLite"]
+    FILES["📁 File Storage"]
+
+    BROWSER --> VITE --> LARAVEL
+    BROWSER --> LARAVEL
+    AUTH --> PERM --> CTRL
+    CTRL --> SVC --> REPO --> MODELS --> DB
+    CTRL --> VIEWS
+    CTRL --> FILES
+    NEW_L -.->|used by all views| CTRL
+    ALPINE -.-> NEW_L
+    </pre>
+</div>
+
+<!-- Module Breakdown -->
+<div class="page-break"></div>
+<h2><span class="emoji">📦</span>Module Breakdown</h2>
+<table>
+    <thead>
+        <tr><th>Module</th><th>Controllers</th><th>Models</th><th>Key Features</th></tr>
+    </thead>
+    <tbody>
+        <tr><td><strong>🏥 Clinical</strong></td><td>5</td><td>12</td><td>Appointments, EMR Workbench, Prescriptions, Medical Tests, Documents</td></tr>
+        <tr><td><strong>👤 Administration</strong></td><td>6</td><td>7</td><td>Staff, Departments, Roles, User Groups</td></tr>
+        <tr><td><strong>⚙️ Hospital Setup</strong></td><td>7</td><td>6</td><td>Charges, Categories, TPA, Casualty, Symptoms, Centers, Frequencies</td></tr>
+        <tr><td><strong>💊 Pharmacy & Diagnostics</strong></td><td>8</td><td>12</td><td>Drugs, Pathology, Radiology, Inventory</td></tr>
+        <tr><td><strong>💰 Billing & RCM</strong></td><td>2</td><td>5</td><td>Patient Bills, Revenue Cycle, Invoice Items</td></tr>
+        <tr><td><strong>🌐 Patient Portal</strong></td><td>3</td><td>—</td><td>Customer appointment booking & bill viewing</td></tr>
+        <tr><td><strong>🔧 Settings</strong></td><td>4</td><td>5</td><td>General, Notifications, Configuration, Suppliers, Units</td></tr>
+    </tbody>
+</table>
+
+<!-- Changes Diagram -->
+<h2><span class="emoji">🔄</span>Changes & Upgrades (Before → After)</h2>
+<div class="diagram-container">
+    <pre class="mermaid">
+graph LR
+    subgraph BEFORE["❌ Before"]
+        B1["Old admin layout"]
+        B2["Broken appointment show"]
+        B3["Unprofessional print"]
+        B4["No document upload"]
+        B5["Controller variable bugs"]
+        B6["Print modal unclickable"]
+        B7["No reports in edit form"]
+    end
+
+    subgraph AFTER["✅ After"]
+        A1["Modern Tailwind layout"]
+        A2["Card-based appointment view"]
+        A3["Professional letterhead print"]
+        A4["PatientDocument model + gallery"]
+        A5["Fixed variables + code gen"]
+        A6["Clean modal + proper z-index"]
+        A7["Patient Reports with camera"]
+    end
+
+    B1 -->|Migrated| A1
+    B2 -->|Rewritten| A2
+    B3 -->|Redesigned| A3
+    B4 -->|Added| A4
+    B5 -->|Fixed| A5
+    B6 -->|Fixed| A6
+    B7 -->|Added| A7
+
+    style B1 fill:#fee2e2,stroke:#ef4444
+    style B2 fill:#fee2e2,stroke:#ef4444
+    style B3 fill:#fee2e2,stroke:#ef4444
+    style B4 fill:#fee2e2,stroke:#ef4444
+    style B5 fill:#fee2e2,stroke:#ef4444
+    style B6 fill:#fee2e2,stroke:#ef4444
+    style B7 fill:#fee2e2,stroke:#ef4444
+    style A1 fill:#d1fae5,stroke:#10b981
+    style A2 fill:#d1fae5,stroke:#10b981
+    style A3 fill:#d1fae5,stroke:#10b981
+    style A4 fill:#d1fae5,stroke:#10b981
+    style A5 fill:#d1fae5,stroke:#10b981
+    style A6 fill:#d1fae5,stroke:#10b981
+    style A7 fill:#d1fae5,stroke:#10b981
+    </pre>
+</div>
+
+<!-- Files Modified -->
+<h2><span class="emoji">📝</span>Files Modified During Modernization</h2>
+<table>
+    <thead>
+        <tr><th>File</th><th>Type</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>modern.blade.php</td><td><span class="badge badge-new">🆕 New</span></td><td>Modern layout with sidebar, Tailwind CSS, Alpine.js</td></tr>
+        <tr><td>sidebar_modern.blade.php</td><td><span class="badge badge-new">🆕 New</span></td><td>Collapsible sidebar navigation with all modules</td></tr>
+        <tr><td>PatientDocument.php</td><td><span class="badge badge-new">🆕 New</span></td><td>Model for patient document storage & retrieval</td></tr>
+        <tr><td>AppointmentController.php</td><td><span class="badge badge-fixed">🔧 Refactored</span></td><td>Professional print, document uploads, dead code removal</td></tr>
+        <tr><td>appointment/show.blade.php</td><td><span class="badge badge-rewritten">🔁 Rewritten</span></td><td>Modern card-based appointment detail view</td></tr>
+        <tr><td>appointment/edit.blade.php</td><td><span class="badge badge-fixed">🔧 Updated</span></td><td>Added Patient Reports section with file/camera upload</td></tr>
+        <tr><td>appointment/index.blade.php</td><td><span class="badge badge-fixed">🔧 Fixed</span></td><td>Print modal z-index, backdrop opacity, JS cleanup</td></tr>
+        <tr><td>emr/show.blade.php</td><td><span class="badge badge-fixed">🔧 Fixed</span></td><td>Document URLs corrected: url() → asset()</td></tr>
+        <tr><td>SettingHospitalChargeController.php</td><td><span class="badge badge-fixed">🔧 Fixed</span></td><td>Variable mismatches + charge code generation</td></tr>
+    </tbody>
+</table>
+
+<!-- Data Flow -->
+<h2><span class="emoji">🔀</span>Request Flow (Clinical Module Example)</h2>
+<div class="diagram-container">
+    <pre class="mermaid">
+sequenceDiagram
+    participant B as Browser
+    participant M as Middleware
+    participant C as AppointmentController
+    participant S as AppointmentService
+    participant R as AppointmentRepository
+    participant DB as SQLite
+
+    B->>M: GET /admin/appointment
+    M->>M: Auth + EnsurePermissions
+    M->>C: index()
+    C->>S: getAppointments()
+    S->>R: getAll()
+    R->>DB: SELECT * FROM appointments
+    DB-->>R: Results
+    R-->>S: Collection
+    S-->>C: Formatted Data
+    C-->>B: Render modern layout + data
+
+    Note over B,DB: Print Flow
+    B->>C: GET /appointment/print/{id}
+    C->>S: getById(id)
+    S->>R: find(id)
+    R->>DB: SELECT with relations
+    DB-->>C: Appointment + Prescriptions + Tests
+    C-->>B: Professional HTML (letterhead + Rx table)
+    </pre>
+</div>
+
+<script>
+    mermaid.initialize({ 
+        startOnLoad: true, 
+        theme: 'base',
+        themeVariables: {
+            primaryColor: '#dbeafe',
+            primaryBorderColor: '#2563eb',
+            primaryTextColor: '#1e293b',
+            secondaryColor: '#f1f5f9',
+            tertiaryColor: '#f8fafc',
+            lineColor: '#94a3b8',
+            fontSize: '13px'
+        }
+    });
+</script>
+
+</body>
+</html>
