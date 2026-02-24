@@ -38,11 +38,16 @@ RUN apk add --no-cache \
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY docker/php.ini /usr/local/etc/php/conf.d/99-custom.ini
 
-# Configure Nginx
+# Configure PHP-FPM to listen on 127.0.0.1:9000
+RUN sed -i 's|listen = 127.0.0.1:9000|listen = 127.0.0.1:9000|g' /usr/local/etc/php-fpm.d/www.conf || true && \
+    sed -i 's|;clear_env = no|clear_env = no|g' /usr/local/etc/php-fpm.d/www.conf
+
+# Configure Nginx — create directory if needed
+RUN mkdir -p /etc/nginx/http.d /run/nginx
 COPY docker/nginx.conf /etc/nginx/http.d/default.conf
 
 # Configure Supervisor
-COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY docker/supervisord.conf /etc/supervisord.conf
 
 # Set working directory
 WORKDIR /var/www/html
@@ -61,11 +66,11 @@ RUN mkdir -p database storage/app/public storage/framework/cache/data \
     && chown -R www-data:www-data . \
     && chmod -R 775 storage bootstrap/cache database public/uploads
 
-# Generate app key and run migrations on startup
+# Entrypoint script
 COPY docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 EXPOSE 8080
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
