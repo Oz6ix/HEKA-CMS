@@ -247,14 +247,14 @@
     
     <!-- User Footer -->
     <div class="border-t border-slate-800 p-4 bg-slate-950/30">
-        <a href="{{ route('logout') }}" onclick="return confirm('Are you sure you want to sign out?')" class="flex items-center gap-3 w-full p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors group">
+        <button type="button" x-on:click="if(confirm('Are you sure you want to sign out?')) window.location.href='{{ route('logout') }}'" class="flex items-center gap-3 w-full p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors group cursor-pointer">
             <div class="h-8 w-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-semibold text-white group-hover:bg-red-600 transition-colors">
                  <i class="fas fa-power-off"></i>
             </div>
-            <div class="flex-1 text-sm font-medium">
+            <div class="flex-1 text-sm font-medium text-left">
                 Sign Out
             </div>
-        </a>
+        </button>
     </div>
 
     <script>
