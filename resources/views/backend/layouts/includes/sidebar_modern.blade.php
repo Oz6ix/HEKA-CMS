@@ -287,68 +287,70 @@
 
     /**
      * Sidebar Scroll Persistence — remembers scroll position across navigations
+     * Strategy: intercept link clicks to save scroll synchronously before navigation,
+     * then use MutationObserver to restore after Alpine.js finishes expanding menus.
      */
     (function() {
         var nav = document.getElementById('sidebar-nav');
         if (!nav) return;
 
-        // Debounced save on scroll
-        var saveTimer;
+        // Continuously save scroll position (non-debounced for reliability)
         nav.addEventListener('scroll', function() {
-            clearTimeout(saveTimer);
-            saveTimer = setTimeout(function() {
-                sessionStorage.setItem('sidebar-scroll', nav.scrollTop);
-            }, 50);
+            sessionStorage.setItem('sidebar-scroll', String(nav.scrollTop));
         }, { passive: true });
 
-        // Save before leaving
+        // Also save before page unload
         window.addEventListener('beforeunload', function() {
-            sessionStorage.setItem('sidebar-scroll', nav.scrollTop);
+            sessionStorage.setItem('sidebar-scroll', String(nav.scrollTop));
         });
 
-        // Save on link click (immediate, before navigation)
+        // Intercept ALL link clicks in sidebar: save scroll THEN navigate
         nav.addEventListener('click', function(e) {
-            if (e.target.closest('a[href]')) {
-                sessionStorage.setItem('sidebar-scroll', nav.scrollTop);
+            var link = e.target.closest('a[href]');
+            if (link && link.href && !link.href.startsWith('javascript:')) {
+                e.preventDefault();
+                sessionStorage.setItem('sidebar-scroll', String(nav.scrollTop));
+                window.location.href = link.href;
             }
         });
 
-        // Restore scroll after Alpine.js finishes rendering (x-show, x-collapse)
+        // Restore scroll position
         function restoreScroll() {
             var saved = sessionStorage.getItem('sidebar-scroll');
-            if (saved !== null) {
-                var target = parseInt(saved, 10);
-                nav.scrollTop = target;
-            } else {
+            if (saved !== null && saved !== '0') {
+                nav.scrollTop = parseInt(saved, 10);
+            } else if (saved === null) {
                 // First visit: scroll active item into view
-                var active = nav.querySelector('.bg-primary-600, [class*="bg-primary-600"]');
+                var active = nav.querySelector('.bg-primary-600');
                 if (active) {
                     active.scrollIntoView({ block: 'center', behavior: 'instant' });
                 }
             }
         }
 
-        // Aggressively restore scroll with multiple retries
-        // (Alpine.js may expand menus that change scroll height)
-        var restored = false;
-        function tryRestore() {
-            if (!restored) {
-                restored = true;
-                restoreScroll();
+        // Use MutationObserver to detect when Alpine finishes expanding menus
+        // (x-show/x-transition changes add/remove DOM elements)
+        var attempts = 0;
+        var maxAttempts = 15;
+        var observer = new MutationObserver(function() {
+            attempts++;
+            restoreScroll();
+            if (attempts >= maxAttempts) {
+                observer.disconnect();
             }
-        }
-
-        // Try at multiple timings to catch Alpine rendering
-        document.addEventListener('alpine:initialized', function() {
-            setTimeout(restoreScroll, 50);
-            setTimeout(restoreScroll, 200);
-            setTimeout(restoreScroll, 500);
         });
 
-        // Fallback
-        setTimeout(restoreScroll, 150);
-        setTimeout(restoreScroll, 400);
-        setTimeout(restoreScroll, 800);
+        observer.observe(nav, { childList: true, subtree: true, attributes: true });
+
+        // Also restore at various timings as fallback
+        restoreScroll();
+        setTimeout(restoreScroll, 100);
+        setTimeout(restoreScroll, 300);
+        setTimeout(restoreScroll, 600);
+        setTimeout(function() {
+            restoreScroll();
+            observer.disconnect();
+        }, 1200);
     })();
     </script>
 </div>
