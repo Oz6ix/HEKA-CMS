@@ -99,16 +99,16 @@
                 <i :class="open ? 'rotate-90' : ''" class="fas fa-chevron-right w-4 h-4 transition-transform duration-200 text-slate-500"></i>
             </button>
             <div x-show="open" x-transition.duration.150ms class="space-y-1 pl-11">
-                <a href="{{ url($url_prefix ?? 'admin') }}/pathologys" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/pathology*') && !request()->is('*/pathology_category*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/pathologys" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/pathology*') && !request()->is('*/pathology_category*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Pathology Tests
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/pathology_categorys" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/pathology_category*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/pathology_categorys" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/pathology_category*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Pathology Categories
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/radiologys" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/radiology*') && !request()->is('*/radiology_category*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/radiologys" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/radiology*') && !request()->is('*/radiology_category*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Radiology Tests
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/radiology_categorys" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/radiology_category*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/radiology_categorys" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/radiology_category*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Radiology Categories
                 </a>
             </div>
@@ -132,16 +132,16 @@
                 <i :class="open ? 'rotate-90' : ''" class="fas fa-chevron-right w-4 h-4 transition-transform duration-200 text-slate-500"></i>
             </button>
             <div x-show="open" x-transition.duration.150ms class="space-y-1 pl-11">
-                <a href="{{ url($url_prefix ?? 'admin') }}/staff_departments" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/staff_department*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/staff_departments" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/staff_department*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Departments
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/staff_designations" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/staff_designation*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/staff_designations" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/staff_designation*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Designations
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/staff_roles" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/staff_role*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/staff_roles" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/staff_role*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Roles
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/staff_specialists" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/staff_specialist*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/staff_specialists" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/staff_specialist*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Specializations
                 </a>
             </div>
@@ -183,25 +183,25 @@
                 <i :class="open ? 'rotate-90' : ''" class="fas fa-chevron-right w-4 h-4 transition-transform duration-200 text-slate-500"></i>
             </button>
             <div x-show="open" x-transition.duration.150ms class="space-y-1 pl-11">
-                <a href="{{ url($url_prefix ?? 'admin') }}/hospital_charges" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/hospital_charge*') && !request()->is('*/hospital_charge_category*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/hospital_charges" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/hospital_charge*') && !request()->is('*/hospital_charge_category*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Charges
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/hospital_charge_categorys" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/hospital_charge_category*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/hospital_charge_categorys" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/hospital_charge_category*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Charge Categories
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/tpa" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/tpa*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/tpa" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/tpa*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     TPA
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/casualty" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/casualty*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/casualty" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/casualty*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Casualty
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/symptom_type" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/symptom*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/symptom_type" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/symptom*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Symptom Types
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/center" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/center*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/center" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/center*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Centers
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/frequency" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/frequency*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/frequency" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/frequency*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Frequencies
                 </a>
             </div>
@@ -218,16 +218,16 @@
                 <i :class="open ? 'rotate-90' : ''" class="fas fa-chevron-right w-4 h-4 transition-transform duration-200 text-slate-500"></i>
             </button>
             <div x-show="open" x-transition.duration.150ms class="space-y-1 pl-11">
-                <a href="{{ url($url_prefix ?? 'admin') }}/general_settings" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/general_settings*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/general_settings" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/general_settings*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Site Settings
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/setting_suppliers" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/setting_supplier*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/setting_suppliers" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/setting_supplier*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Suppliers
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/setting_units" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/setting_unit*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/setting_units" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/setting_unit*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Units
                 </a>
-                <a href="{{ url($url_prefix ?? 'admin') }}/setting_quantitys" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/setting_quantity*') ? 'text-primary-400' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                <a href="{{ url($url_prefix ?? 'admin') }}/setting_quantitys" class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->is('*/setting_quantity*') ? 'text-primary-400 bg-primary-600/10' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
                     Quantities
                 </a>
             </div>
@@ -319,38 +319,36 @@
             if (saved !== null) {
                 var target = parseInt(saved, 10);
                 nav.scrollTop = target;
-                // Double-check after a beat (in case Alpine just expanded a section)
-                requestAnimationFrame(function() {
-                    if (Math.abs(nav.scrollTop - target) > 10) {
-                        nav.scrollTop = target;
-                    }
-                });
             } else {
                 // First visit: scroll active item into view
-                var active = nav.querySelector('.bg-primary-600, [class*="text-primary-400"]');
+                var active = nav.querySelector('.bg-primary-600, [class*="bg-primary-600"]');
                 if (active) {
                     active.scrollIntoView({ block: 'center', behavior: 'instant' });
                 }
             }
         }
 
-        // Wait for Alpine to finish, then restore
-        document.addEventListener('alpine:initialized', function() {
-            // Small delay to let x-collapse animations complete
-            setTimeout(restoreScroll, 120);
-        });
-
-        // Fallback if alpine:initialized doesn't fire
-        setTimeout(function() {
-            if (!window.__sidebarScrollRestored) {
-                window.__sidebarScrollRestored = true;
+        // Aggressively restore scroll with multiple retries
+        // (Alpine.js may expand menus that change scroll height)
+        var restored = false;
+        function tryRestore() {
+            if (!restored) {
+                restored = true;
                 restoreScroll();
             }
-        }, 500);
+        }
 
+        // Try at multiple timings to catch Alpine rendering
         document.addEventListener('alpine:initialized', function() {
-            window.__sidebarScrollRestored = true;
+            setTimeout(restoreScroll, 50);
+            setTimeout(restoreScroll, 200);
+            setTimeout(restoreScroll, 500);
         });
+
+        // Fallback
+        setTimeout(restoreScroll, 150);
+        setTimeout(restoreScroll, 400);
+        setTimeout(restoreScroll, 800);
     })();
     </script>
 </div>

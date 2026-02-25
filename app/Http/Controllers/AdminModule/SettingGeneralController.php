@@ -46,9 +46,15 @@ class SettingGeneralController extends Controller
     /* Page events */
     public function edit($current_section = '')
     {
-        $item_site = SettingSiteLogo::findOrFail(1)->toArray(); 
-        $item_general = SettingsSiteGeneral::findOrFail(1)->toArray(); 
-        //dd( $item_site);
+        // Use firstOrCreate so Site Settings works on fresh databases without seeded data
+        $item_site = SettingSiteLogo::firstOrCreate(
+            ['id' => 1],
+            ['favicon' => '', 'logo_desktop' => '']
+        )->toArray(); 
+        $item_general = SettingsSiteGeneral::firstOrCreate(
+            ['id' => 1],
+            ['site_title' => 'HEKA', 'site_title_footer' => 'HEKA Clinic Management', 'address' => '', 'phone' => '', 'email' => '']
+        )->toArray(); 
         return view('backend.admin_module.setting_general.edit', compact('item_site','item_general'))->with('current_section', $current_section)->with($this->page_info);
     }
     public function update_site(Request $request)
