@@ -286,71 +286,88 @@
     });
 
     /**
-     * Sidebar Scroll Persistence — remembers scroll position across navigations
-     * Strategy: intercept link clicks to save scroll synchronously before navigation,
-     * then use MutationObserver to restore after Alpine.js finishes expanding menus.
+     * Sidebar Scroll Persistence
+     * Hybrid approach:
+     * 1. On link click: save scroll position synchronously, then navigate
+     * 2. On page load: wait for Alpine to finish, then restore saved position
+     * 3. Fallback: scroll active item into view
      */
     (function() {
         var nav = document.getElementById('sidebar-nav');
         if (!nav) return;
+        var STORAGE_KEY = 'heka-sidebar-scroll';
 
-        // Continuously save scroll position (non-debounced for reliability)
+        // Save scroll on every scroll event (sync, no debounce)
         nav.addEventListener('scroll', function() {
-            sessionStorage.setItem('sidebar-scroll', String(nav.scrollTop));
+            try { sessionStorage.setItem(STORAGE_KEY, nav.scrollTop); } catch(e) {}
         }, { passive: true });
 
-        // Also save before page unload
-        window.addEventListener('beforeunload', function() {
-            sessionStorage.setItem('sidebar-scroll', String(nav.scrollTop));
-        });
-
-        // Intercept ALL link clicks in sidebar: save scroll THEN navigate
+        // Intercept sidebar link clicks: save scroll, then navigate
         nav.addEventListener('click', function(e) {
             var link = e.target.closest('a[href]');
-            if (link && link.href && !link.href.startsWith('javascript:')) {
+            if (link && link.getAttribute('href') && link.getAttribute('href') !== '#') {
                 e.preventDefault();
-                sessionStorage.setItem('sidebar-scroll', String(nav.scrollTop));
-                window.location.href = link.href;
+                e.stopPropagation();
+                try { sessionStorage.setItem(STORAGE_KEY, nav.scrollTop); } catch(e2) {}
+                // Use a microtask to ensure storage is flushed
+                Promise.resolve().then(function() {
+                    window.location.href = link.href;
+                });
+                return false;
             }
-        });
+        }, true); // capture phase to run before Alpine handlers
 
-        // Restore scroll position
-        function restoreScroll() {
-            var saved = sessionStorage.getItem('sidebar-scroll');
-            if (saved !== null && saved !== '0') {
-                nav.scrollTop = parseInt(saved, 10);
-            } else if (saved === null) {
-                // First visit: scroll active item into view
-                var active = nav.querySelector('.bg-primary-600');
-                if (active) {
-                    active.scrollIntoView({ block: 'center', behavior: 'instant' });
+        // Restore function
+        function restore() {
+            var saved = sessionStorage.getItem(STORAGE_KEY);
+            if (saved !== null) {
+                var pos = parseInt(saved, 10);
+                if (pos > 0 && nav.scrollHeight > nav.clientHeight) {
+                    nav.scrollTop = pos;
+                    return true;
                 }
+            }
+            return false;
+        }
+
+        // Scroll active item into view as fallback
+        function scrollToActive() {
+            var el = nav.querySelector('.bg-primary-600') ||
+                     nav.querySelector('[class*="bg-primary-600"]');
+            if (el) {
+                el.scrollIntoView({ block: 'center', behavior: 'instant' });
             }
         }
 
-        // Use MutationObserver to detect when Alpine finishes expanding menus
-        // (x-show/x-transition changes add/remove DOM elements)
-        var attempts = 0;
-        var maxAttempts = 15;
-        var observer = new MutationObserver(function() {
-            attempts++;
-            restoreScroll();
-            if (attempts >= maxAttempts) {
-                observer.disconnect();
+        // After Alpine is fully done, restore scroll
+        var restored = false;
+        function tryRestore() {
+            if (restored) return;
+            if (restore()) {
+                restored = true;
             }
+        }
+
+        // Watch for DOM changes (Alpine expanding menus)
+        var mutCount = 0;
+        var obs = new MutationObserver(function() {
+            mutCount++;
+            tryRestore();
+            if (mutCount > 20) obs.disconnect();
         });
+        obs.observe(nav, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
 
-        observer.observe(nav, { childList: true, subtree: true, attributes: true });
-
-        // Also restore at various timings as fallback
-        restoreScroll();
-        setTimeout(restoreScroll, 100);
-        setTimeout(restoreScroll, 300);
-        setTimeout(restoreScroll, 600);
-        setTimeout(function() {
-            restoreScroll();
-            observer.disconnect();
-        }, 1200);
+        // Multiple timing attempts
+        [0, 50, 150, 300, 500, 800, 1200].forEach(function(ms) {
+            setTimeout(function() {
+                tryRestore();
+                // Final attempt: if no saved position, scroll to active
+                if (ms === 1200) {
+                    obs.disconnect();
+                    if (!restored) scrollToActive();
+                }
+            }, ms);
+        });
     })();
     </script>
 </div>
