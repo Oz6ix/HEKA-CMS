@@ -100,15 +100,15 @@ class DemoDataSeeder extends Seeder
         ];
         foreach ($charges as $ch) {
             $chargeIds[] = \App\Models\HospitalCharge::firstOrCreate(
-                ['charge_code' => $ch['code']],
-                ['charge_name' => $ch['name'], 'charge' => $ch['charge'], 'status' => 1, 'delete_status' => 0, 'charge_category_id' => 0]
+                ['code' => $ch['code']],
+                ['title' => $ch['name'], 'standard_charge' => $ch['charge'], 'status' => 1, 'delete_status' => 0, 'hospital_charge_category_id' => 0]
             )->id;
         }
 
         // Inventory categories
         $invCats = [];
         foreach (['Medical Equipment','Surgical Supplies','Consumables','PPE','Office Supplies'] as $c) {
-            $invCats[] = \App\Models\InventoryCategory::firstOrCreate(['category_name' => $c], ['status' => 1, 'delete_status' => 0])->id;
+            $invCats[] = \App\Models\InventoryCategory::firstOrCreate(['inventory_name' => $c], ['status' => 1, 'delete_status' => 0])->id;
         }
 
         // Suppliers
@@ -121,7 +121,7 @@ class DemoDataSeeder extends Seeder
         foreach ($suppliers as $s) {
             $supplierIds[] = \App\Models\SettingsSupplier::firstOrCreate(
                 ['email' => $s['email']],
-                ['supplier_name' => $s['name'], 'contact_number' => $s['contact'], 'address' => $s['address'], 'status' => 1, 'delete_status' => 0]
+                ['supplier_name' => $s['name'], 'phone' => $s['contact'], 'address' => $s['address'], 'status' => 1, 'delete_status' => 0]
             )->id;
         }
 
