@@ -295,6 +295,7 @@ Route::group(['prefix' => $url_prefix, 'namespace' => 'App\Http\Controllers\Admi
     Route::get('/patient/ajax_duplicate_email/{email?}', 'PatientController@ajax_duplicate_email')->name('patient_duplicate_email');
 
     /*Appointments */
+    Route::get('/appointment/calendar-events', 'AppointmentController@calendarEvents')->name('appointment.calendar_events');
     Route::resource('/appointment', 'AppointmentController');
     Route::get('/appointment/create/{id?}', 'AppointmentController@create');
     Route::post('/appointment/store', 'AppointmentController@store')->name('appointment_add');

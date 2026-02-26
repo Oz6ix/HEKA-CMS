@@ -11,6 +11,16 @@
             <p class="text-slate-500 mt-1">Manage patient appointments and schedules</p>
         </div>
         <div class="flex items-center gap-3">
+            <!-- View Toggle -->
+            <div class="bg-white rounded-lg border border-slate-200 p-1 flex shadow-sm">
+                <button @click="viewMode = 'list'" :class="viewMode === 'list' ? 'bg-primary-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'" class="px-3 py-1.5 text-sm font-medium rounded-md transition-all">
+                    <i class="fas fa-list mr-1"></i> List
+                </button>
+                <button @click="viewMode = 'calendar'; $nextTick(() => initCalendar())" :class="viewMode === 'calendar' ? 'bg-primary-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'" class="px-3 py-1.5 text-sm font-medium rounded-md transition-all">
+                    <i class="fas fa-calendar-alt mr-1"></i> Calendar
+                </button>
+            </div>
+
             <!-- Bulk Delete -->
             <button 
                 x-show="selectedItems.length > 0"
@@ -28,8 +38,8 @@
         </div>
     </div>
 
-    <!-- Search/Filter -->
-    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+    <!-- Search/Filter (shown in list mode) -->
+    <div x-show="viewMode === 'list'" class="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
         <form action="{{ url($url_prefix . '/appointment/appointment_search') }}" method="post" class="grid grid-cols-1 md:grid-cols-4 gap-4">
             @csrf
             <!-- Patient Select -->
@@ -84,8 +94,8 @@
         </form>
     </div>
 
-    <!-- Table -->
-    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+    <!-- List View -->
+    <div x-show="viewMode === 'list'" class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
                 <thead>
@@ -159,6 +169,19 @@
         </div>
     </div>
 
+    <!-- Calendar View -->
+    <div x-show="viewMode === 'calendar'" x-cloak class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <!-- Legend -->
+        <div class="px-5 py-3 border-b border-slate-100 bg-slate-50 flex items-center gap-5 text-xs">
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-green-500"></span> Open</span>
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-red-500"></span> Cancelled</span>
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-gray-500"></span> Closed</span>
+        </div>
+        <div class="p-4">
+            <div id="fullCalendar"></div>
+        </div>
+    </div>
+
      <!-- Print Modal -->
      <div x-show="showPrintModal" class="fixed inset-0 z-50 overflow-y-auto" style="display: none;">
         <!-- Backdrop -->
@@ -190,9 +213,31 @@
     </div>
 </div>
 
+<!-- FullCalendar CDN -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+<style>
+    [x-cloak] { display: none !important; }
+    /* FullCalendar custom styling */
+    #fullCalendar .fc-toolbar-title { font-size: 1.1rem !important; font-weight: 700 !important; color: #1e293b; }
+    #fullCalendar .fc-button { background-color: #f1f5f9 !important; border: 1px solid #e2e8f0 !important; color: #475569 !important; font-weight: 500 !important; font-size: 0.8rem !important; text-transform: capitalize !important; }
+    #fullCalendar .fc-button:hover { background-color: #e2e8f0 !important; }
+    #fullCalendar .fc-button-active { background-color: #3b82f6 !important; color: #fff !important; border-color: #3b82f6 !important; }
+    #fullCalendar .fc-daygrid-day-number { font-size: 0.8rem; color: #64748b; padding: 4px 8px; }
+    #fullCalendar .fc-daygrid-day.fc-day-today { background-color: #eff6ff !important; }
+    #fullCalendar .fc-event { cursor: pointer; border-radius: 4px; padding: 2px 4px; font-size: 0.75rem; }
+    #fullCalendar .fc-col-header-cell-cushion { font-size: 0.75rem; font-weight: 600; color: #64748b; text-transform: uppercase; }
+    #fullCalendar .fc-scrollgrid { border-color: #e2e8f0 !important; }
+    #fullCalendar td, #fullCalendar th { border-color: #e2e8f0 !important; }
+</style>
+
 <script>
+    var calendarInstance = null;
+
     function appointmentList() {
         return {
+            viewMode: 'list',
             selectedItems: [],
             selectAll: false,
             showPrintModal: false,
@@ -231,6 +276,45 @@
             }
 
         }
+    }
+
+    function initCalendar() {
+        if (calendarInstance) {
+            calendarInstance.render();
+            return;
+        }
+
+        var calendarEl = document.getElementById('fullCalendar');
+        if (!calendarEl) return;
+
+        calendarInstance = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,listWeek'
+            },
+            height: 'auto',
+            events: {
+                url: '{{ url($url_prefix . "/appointment/calendar-events") }}',
+                failure: function() {
+                    console.error('Failed to load appointment events');
+                }
+            },
+            eventClick: function(info) {
+                var url = info.event.extendedProps.view_url;
+                if (url) window.location.href = url;
+            },
+            eventDidMount: function(info) {
+                // Tooltip on hover
+                var props = info.event.extendedProps;
+                info.el.title = props.patient + ' — Dr. ' + props.doctor + (props.case_number ? ' (Case: ' + props.case_number + ')' : '');
+            },
+            dayMaxEvents: 3,
+            navLinks: true,
+            editable: false,
+        });
+        calendarInstance.render();
     }
     
     function printDiv(divId) {

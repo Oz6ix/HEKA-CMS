@@ -74,6 +74,9 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div class="flex items-center justify-end gap-2">
+                             <a href="{{ url($url_prefix . '/emr/workbench/'.$item->id ) }}" class="text-slate-400 hover:text-indigo-600" title="View Medical Record">
+                                <i class="fas fa-clipboard-list"></i>
+                            </a>
                              <a href="{{ url($url_prefix . '/appointment/create/'.$item->id ) }}" class="text-slate-400 hover:text-emerald-600" title="Book Appointment">
                                 <i class="fas fa-calendar-plus"></i>
                             </a>

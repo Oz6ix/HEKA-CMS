@@ -55,6 +55,35 @@ class AppointmentController extends Controller
         generate_log('Appointment list accessed');
         return view('backend.admin_module.appointment.index', compact('appointment_item','items','patient_item','doctor_item'))->with($this->page_info);
     }
+
+    public function calendarEvents(Request $request)
+    {
+        $items = $this->appointmentService->getAllAppointments();
+
+        $events = $items->map(function ($item) {
+            $statusColors = [
+                1 => '#22c55e', // Open - green
+                2 => '#ef4444', // Cancelled - red
+                0 => '#6b7280', // Closed - gray
+            ];
+            return [
+                'id' => $item->id,
+                'title' => ($item->patient->name ?? 'Unknown') . ' — ' . ($item->staff_doctor->name ?? 'N/A'),
+                'start' => $item->appointment_date,
+                'backgroundColor' => $statusColors[$item->status] ?? '#3b82f6',
+                'borderColor' => $statusColors[$item->status] ?? '#3b82f6',
+                'extendedProps' => [
+                    'patient' => $item->patient->name ?? 'Unknown',
+                    'doctor' => $item->staff_doctor->name ?? 'N/A',
+                    'case_number' => $item->case_number,
+                    'status' => $item->status,
+                    'view_url' => url($this->url_prefix . '/appointment/view/' . $item->id),
+                ],
+            ];
+        });
+
+        return response()->json($events);
+    }
     
     /**
      * This method is used for display an appointment details
