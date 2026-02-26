@@ -21,44 +21,44 @@
     </div>
     @endif
 
-    <div class="bg-gradient-to-r from-slate-800 to-slate-700 {{ $patient && $patient->blood_group ? 'rounded-b-xl' : 'rounded-xl' }} px-6 py-4">
+    <div class="{{ $patient && $patient->blood_group ? 'rounded-b-xl' : 'rounded-xl' }} px-6 py-4" style="background: linear-gradient(135deg, #1e293b, #334155);">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-4">
-                <div class="h-14 w-14 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-xl font-bold shadow-lg ring-2 ring-white/20">
+                <div class="h-14 w-14 rounded-full flex items-center justify-center text-xl font-bold shadow-lg" style="background: linear-gradient(135deg, #60a5fa, #2563eb); color: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.2);">
                     {{ strtoupper(substr($patient->name ?? 'U', 0, 1)) }}
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold text-white">{{ $patient->name ?? 'Unknown' }}</h1>
-                    <div class="flex items-center gap-3 mt-1 text-sm text-slate-300">
-                        <span><i class="fas fa-id-badge mr-1 text-slate-400"></i>{{ $patient->patient_code ?? 'N/A' }}</span>
-                        <span class="text-slate-500">•</span>
-                        <span><i class="fas fa-venus-mars mr-1 text-slate-400"></i>{{ $patient->gender ?? 'N/A' }}</span>
-                        <span class="text-slate-500">•</span>
-                        <span><i class="fas fa-birthday-cake mr-1 text-slate-400"></i>{{ $age }} yrs</span>
+                    <h1 class="text-xl font-bold" style="color: #fff;">{{ $patient->name ?? 'Unknown' }}</h1>
+                    <div class="flex items-center gap-3 mt-1 text-sm" style="color: #cbd5e1;">
+                        <span><i class="fas fa-id-badge mr-1" style="color: #94a3b8;"></i>{{ $patient->patient_code ?? 'N/A' }}</span>
+                        <span style="color: #64748b;">•</span>
+                        <span><i class="fas fa-venus-mars mr-1" style="color: #94a3b8;"></i>{{ $patient->gender ?? 'N/A' }}</span>
+                        <span style="color: #64748b;">•</span>
+                        <span><i class="fas fa-birthday-cake mr-1" style="color: #94a3b8;"></i>{{ $age }} yrs</span>
                         @if($patient && $patient->phone)
-                        <span class="text-slate-500">•</span>
-                        <span><i class="fas fa-phone mr-1 text-slate-400"></i>{{ $patient->phone }}</span>
+                        <span style="color: #64748b;">•</span>
+                        <span><i class="fas fa-phone mr-1" style="color: #94a3b8;"></i>{{ $patient->phone }}</span>
                         @endif
                     </div>
                 </div>
             </div>
             <div class="flex items-center gap-6">
                 <div class="text-right">
-                    <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Visit Date</p>
-                    <p class="text-sm font-semibold text-white mt-0.5">{{ date('d M Y', strtotime($patient_details[0]->appointment_date)) }}</p>
+                    <p class="uppercase tracking-wider font-semibold" style="font-size: 10px; color: #94a3b8;">Visit Date</p>
+                    <p class="text-sm font-semibold mt-0.5" style="color: #fff;">{{ date('d M Y', strtotime($patient_details[0]->appointment_date)) }}</p>
                 </div>
-                <div class="w-px h-8 bg-slate-600"></div>
+                <div class="w-px h-8" style="background: #475569;"></div>
                 <div class="text-right">
-                    <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Consultant</p>
-                    <p class="text-sm font-semibold text-white mt-0.5">Dr. {{ $patient_details[0]->staff_doctor->name ?? 'Unknown' }}</p>
+                    <p class="uppercase tracking-wider font-semibold" style="font-size: 10px; color: #94a3b8;">Consultant</p>
+                    <p class="text-sm font-semibold mt-0.5" style="color: #fff;">Dr. {{ $patient_details[0]->staff_doctor->name ?? 'Unknown' }}</p>
                 </div>
-                <div class="w-px h-8 bg-slate-600"></div>
+                <div class="w-px h-8" style="background: #475569;"></div>
                 <div class="text-right">
-                    <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Status</p>
+                    <p class="uppercase tracking-wider font-semibold" style="font-size: 10px; color: #94a3b8;">Status</p>
                     @if($isDiagnosed)
-                        <span class="inline-flex items-center rounded-full bg-green-500/20 px-2 py-0.5 text-xs font-bold text-green-300 mt-0.5"><i class="fas fa-check-circle mr-1"></i>Completed</span>
+                        <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-bold mt-0.5" style="background: rgba(34,197,94,0.2); color: #86efac;"><i class="fas fa-check-circle mr-1"></i>Completed</span>
                     @else
-                        <span class="inline-flex items-center rounded-full bg-amber-500/20 px-2 py-0.5 text-xs font-bold text-amber-300 mt-0.5"><i class="fas fa-edit mr-1"></i>In Progress</span>
+                        <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-bold mt-0.5" style="background: rgba(245,158,11,0.2); color: #fcd34d;"><i class="fas fa-edit mr-1"></i>In Progress</span>
                     @endif
                 </div>
             </div>
