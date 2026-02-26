@@ -33,8 +33,18 @@
     }
     </script>
 
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine.js (cdnjs primary, unpkg fallback) -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.9/cdn.min.js"></script>
+    <script>
+    // Alpine.js fallback: if cdnjs fails, try unpkg
+    setTimeout(function() {
+        if (typeof Alpine === 'undefined') {
+            var s = document.createElement('script');
+            s.src = 'https://unpkg.com/alpinejs@3.14.9/dist/cdn.min.js';
+            document.head.appendChild(s);
+        }
+    }, 3000);
+    </script>
 
     <!-- Scripts & Styles (Vite — when dev server is running) -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
