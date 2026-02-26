@@ -287,7 +287,7 @@
                 var dz = this;
                 
                 // Preload existing image
-                $.getJSON("{{ url('am/patient/viewImage/'.$item->id) }}", function(data) {
+                $.getJSON("{{ url($url_prefix.'/patient/viewImage/'.$item->id) }}", function(data) {
                     if(data && data.length > 0 && data[0] != "") {
                         var file = { name: data[0].name, size: 12345, status: 'success', accepted: true }; // Dummy size
                         dz.emit("addedfile", file);
@@ -306,7 +306,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{{ url('am/patient/update') }}",
+                        url: "{{ url($url_prefix.'/patient/update') }}",
                         data: formData,
                         processData: false,
                         contentType: false,
