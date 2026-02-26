@@ -41,6 +41,11 @@ class UserGroupController extends Controller
     {
         $data = $request->all();
 
+        // Map form field 'user_group' to expected 'title'
+        if (!isset($data['title']) && isset($data['user_group'])) {
+            $data['title'] = $data['user_group'];
+        }
+
         //dd($data);
 
         $data['admin_users'] = $request->has('admin_users');
@@ -84,6 +89,10 @@ class UserGroupController extends Controller
     public function update(Request $request)
     {
         $data = $request->all();
+        // Map form field 'user_group' to expected 'title'
+        if (!isset($data['title']) && isset($data['user_group'])) {
+            $data['title'] = $data['user_group'];
+        }
         $id = $data['id'];
         $data['admin_users'] = $request->has('admin_users');
         $data['staff'] = $request->has('staff');

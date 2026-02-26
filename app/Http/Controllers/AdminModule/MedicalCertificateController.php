@@ -36,8 +36,8 @@ class MedicalCertificateController extends Controller
 
     public function create()
     {
-        $patients = Patient::where('delete_status', 0)->orderBy('first_name')->get();
-        $doctors = Staff::where('delete_status', 0)->where('staff_type', 'doctor')->orderBy('first_name')->get();
+        $patients = Patient::where('delete_status', 0)->orderBy('name')->get();
+        $doctors = Staff::where('delete_status', 0)->where('status', 1)->orderBy('name')->get();
 
         return view('backend.admin_module.medical_certificates.create', compact('patients', 'doctors'))
             ->with($this->page_info);
@@ -75,7 +75,7 @@ class MedicalCertificateController extends Controller
     public function print($id)
     {
         $certificate = MedicalCertificate::with('patient', 'doctor')->findOrFail($id);
-        $settings = \App\Models\SettingsGeneral::first();
+        $settings = \App\Models\SettingsSiteGeneral::first();
 
         return view('backend.admin_module.medical_certificates.print', compact('certificate', 'settings'))
             ->with($this->page_info);

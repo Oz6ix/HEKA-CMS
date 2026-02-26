@@ -18,7 +18,7 @@
         <div class="p-6 space-y-5">
             <div>
                 <label class="block text-sm font-medium text-slate-700 mb-1.5">Group Name <span class="text-red-500">*</span></label>
-                <input type="text" name="user_group" id="user_group" value="{{ old('user_group') }}" placeholder="Enter Group Name" 
+                <input type="text" name="title" id="title" value="{{ old('title') }}" placeholder="Enter Group Name" 
                     class="block w-full rounded-lg border-slate-300 text-sm focus:ring-primary-500 focus:border-primary-500">
             </div>
         </div>

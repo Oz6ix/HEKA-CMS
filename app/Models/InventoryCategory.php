@@ -8,7 +8,7 @@ class InventoryCategory extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['parent_id','inventory_name','description', 'delete_status', 'markup', 'status'];
     public static $rules = [
-        'parent_id' => 'required',  
+        'parent_id' => 'nullable|integer',  
         'inventory_name' => 'required',
     ];
 

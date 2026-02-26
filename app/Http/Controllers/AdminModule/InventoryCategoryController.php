@@ -78,6 +78,14 @@ class InventoryCategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->all(); 
+        // Map form field 'name' to expected 'inventory_name'
+        if (!isset($data['inventory_name']) && isset($data['name'])) {
+            $data['inventory_name'] = $data['name'];
+        }
+        // Default parent_id to 0 (root category) if not provided
+        if (!isset($data['parent_id']) || $data['parent_id'] === '' || $data['parent_id'] === null) {
+            $data['parent_id'] = 0;
+        }
         
         if (!$this->exists($data['inventory_name'])) {
             $validator = InventoryCategory::validate_add($data);
@@ -119,6 +127,10 @@ class InventoryCategoryController extends Controller
     public function update(Request $request)
     {
         $data = $request->all(); 
+        // Map form field 'name' to expected 'inventory_name'
+        if (!isset($data['inventory_name']) && isset($data['name'])) {
+            $data['inventory_name'] = $data['name'];
+        }
         $id = $data['id'];
         if (!$this->exists($data['inventory_name'], $id)) {
             $validator = InventoryCategory::validate_update($data, $id);

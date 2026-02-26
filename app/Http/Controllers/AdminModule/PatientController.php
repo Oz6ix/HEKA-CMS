@@ -210,8 +210,8 @@ class PatientController extends Controller
         $this->patientService->updatePatient($id, $data);
            
         generate_log('Patient Updated', $id); 
-        // return redirect($this->url_prefix . '/patient')->with('message', 'Patient Details updated.');
-        return response()->json(['status'=>"success"]);
+        // Redirect back to patient list with success message
+        return redirect($this->url_prefix . '/patient')->with('message', 'Patient Details updated.');
 
     }
     

@@ -9,9 +9,9 @@ class SettingsSupplier extends Model
     protected $fillable = ['supplier_name','supplier_code','phone','phone_alternative','email','address', 'status','delete_status'];
     public static $rules = [
         'supplier_name' => 'required',        
-        'phone' => 'required',
-        'email' => 'required',
-        'address' => 'required',               
+        'phone' => 'nullable',
+        'email' => 'nullable',
+        'address' => 'nullable',               
     ];
 
  

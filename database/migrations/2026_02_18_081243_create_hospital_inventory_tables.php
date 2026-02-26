@@ -28,6 +28,9 @@ return new class extends Migration
             $table->string('item_name', 256);
             $table->string('master_code', 256)->nullable();
             $table->integer('inventory_category_id');
+            $table->string('pharmacy_generic', 256)->nullable();
+            $table->string('pharmacy_dosage', 256)->nullable();
+            $table->string('route', 256)->nullable();
             $table->longText('description')->nullable();
             $table->integer('inventory_unit')->default(0);
             $table->tinyInteger('status')->default(1);

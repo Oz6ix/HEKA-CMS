@@ -31,7 +31,7 @@
                         @foreach($items as $index => $item)
                         <tr class="hover:bg-slate-50 transition-colors">
                             <td class="py-3 pl-6 pr-3 text-sm text-slate-500">{{ $index + 1 }}</td>
-                            <td class="px-3 py-3 text-sm font-medium text-slate-900">{{ $item->user_group }}</td>
+                            <td class="px-3 py-3 text-sm font-medium text-slate-900">{{ $item->title }}</td>
                             <td class="px-3 py-3">
                                 @if($item->status == 1)
                                     <span class="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700">Active</span>

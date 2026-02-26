@@ -45,6 +45,10 @@ class SettingSupplierController extends Controller
     public function store(Request $request)
     {
         $data = $request->all(); 
+        // Map form field 'suppliers' to expected 'supplier_name'
+        if (!isset($data['supplier_name']) && isset($data['suppliers'])) {
+            $data['supplier_name'] = $data['suppliers'];
+        }
         $data['supplier_code']=generate_supplier_code();
         if (!$this->exists($data['supplier_name'])) {
             $validator = SettingsSupplier::validate_add($data);
@@ -70,6 +74,10 @@ class SettingSupplierController extends Controller
     public function update(Request $request)
     {
         $data = $request->all(); 
+        // Map form field 'suppliers' to expected 'supplier_name'
+        if (!isset($data['supplier_name']) && isset($data['suppliers'])) {
+            $data['supplier_name'] = $data['suppliers'];
+        }
         $id = $data['id'];
         if (!$this->exists($data['supplier_name'], $id)) {
             $validator = SettingsSupplier::validate_update($data, $id);
