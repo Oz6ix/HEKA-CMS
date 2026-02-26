@@ -66,6 +66,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             QASeeder::class,
             BloodGroupSeeder::class,
+            DemoDataSeeder::class,
         ]);
     }
 }
