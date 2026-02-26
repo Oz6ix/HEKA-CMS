@@ -44,9 +44,15 @@
                     </td>
                      <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
-                            <div class="h-9 w-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 mr-3 group-hover:bg-primary-100 group-hover:text-primary-600 transition-colors">
-                                <i class="fas fa-user text-sm"></i>
-                            </div>
+                            @if($item->patient_photo)
+                                <img src="{{ asset('uploads/patient/'.$item->patient_folder_name.'/'.$item->patient_photo) }}" 
+                                     alt="{{ $item->name }}" 
+                                     class="h-9 w-9 rounded-full object-cover mr-3 ring-1 ring-slate-200">
+                            @else
+                                <div class="h-9 w-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 mr-3 group-hover:bg-primary-100 group-hover:text-primary-600 transition-colors">
+                                    <i class="fas fa-user text-sm"></i>
+                                </div>
+                            @endif
                             <div>
                                 <div class="text-sm font-medium text-slate-900">{{ $item->name }}</div>
                                 <div class="text-xs text-slate-500">{{ $item->age_year }} Y / {{ $item->gender }}</div>

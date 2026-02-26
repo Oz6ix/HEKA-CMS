@@ -121,13 +121,8 @@ class PatientController extends Controller
             //here we are geeting userid alogn with an image
             $userid = $request->patient_code;
             
-            // Validate user exists
-            $patient = $this->patientService->patientRepository->findByCode($userid); 
-             
-            // Using model directly for now if repository method not exposed, but expecting repository to have it or we use raw query here for safety
-            if (!$patient) {
-                 $patient = \App\Models\Patient::where('patient_code', $userid)->where('delete_status', 0)->first();
-            }
+            // Find patient by code
+            $patient = \App\Models\Patient::where('patient_code', $userid)->where('delete_status', 0)->first();
             
             if (!$patient) {
                 return response()->json(['status' => 'error', 'message' => 'Patient not found'], 404);

@@ -24,9 +24,15 @@
     <div class="{{ $patient && $patient->blood_group ? 'rounded-b-xl' : 'rounded-xl' }} px-6 py-4" style="background: linear-gradient(135deg, #1e293b, #334155);">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-4">
-                <div class="h-14 w-14 rounded-full flex items-center justify-center text-xl font-bold shadow-lg" style="background: linear-gradient(135deg, #60a5fa, #2563eb); color: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.2);">
-                    {{ strtoupper(substr($patient->name ?? 'U', 0, 1)) }}
-                </div>
+                @if($patient && $patient->patient_photo)
+                    <img src="{{ asset('uploads/patient/'.$patient->patient_folder_name.'/'.$patient->patient_photo) }}" 
+                         alt="{{ $patient->name }}" 
+                         class="h-14 w-14 rounded-full object-cover shadow-lg" style="box-shadow: 0 0 0 3px rgba(255,255,255,0.2);">
+                @else
+                    <div class="h-14 w-14 rounded-full flex items-center justify-center text-xl font-bold shadow-lg" style="background: linear-gradient(135deg, #60a5fa, #2563eb); color: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.2);">
+                        {{ strtoupper(substr($patient->name ?? 'U', 0, 1)) }}
+                    </div>
+                @endif
                 <div>
                     <h1 class="text-xl font-bold" style="color: #fff;">{{ $patient->name ?? 'Unknown' }}</h1>
                     <div class="flex items-center gap-3 mt-1 text-sm" style="color: #cbd5e1;">
