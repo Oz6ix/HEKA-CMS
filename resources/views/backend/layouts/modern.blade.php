@@ -54,6 +54,7 @@
 
     <!-- Scripts & Styles (Vite — when dev server is running) -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @yield('styles')
 </head>
 <body class="h-full font-sans antialiased text-slate-800">
     <div x-data="{ sidebarOpen: false }" class="h-screen flex bg-slate-50 overflow-hidden">

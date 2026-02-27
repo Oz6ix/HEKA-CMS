@@ -212,11 +212,11 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('styles')
 <!-- FullCalendar CDN -->
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-
 <style>
     [x-cloak] { display: none !important; }
     /* FullCalendar custom styling */
@@ -231,12 +231,16 @@
     #fullCalendar .fc-scrollgrid { border-color: #e2e8f0 !important; }
     #fullCalendar td, #fullCalendar th { border-color: #e2e8f0 !important; }
 </style>
+@endsection
 
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 <script>
     var calendarInstance = null;
 
-    function appointmentList() {
-        return {
+    // Register Alpine component before Alpine initializes
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('appointmentList', () => ({
             viewMode: 'list',
             selectedItems: [],
             selectAll: false,
@@ -274,9 +278,8 @@
                         container.innerHTML = '<div class="text-red-500 text-center">Failed to load print data.</div>';
                     });
             }
-
-        }
-    }
+        }));
+    });
 
     function initCalendar() {
         if (calendarInstance) {
